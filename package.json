@@ -1,0 +1,23 @@
+{
+  "name": "multileng",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "build:start": "npx tsc && node build/index.js",
+    "start": "node build/index.js",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
+    "gitup": "git add . && git commit -m 'home' && git push origin main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2"
+  }
+}
