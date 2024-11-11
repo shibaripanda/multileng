@@ -72,7 +72,7 @@ const getLenguagesFromAI = async (updateAll: boolean, indata: LengData[], lengua
         }
         else{
             console.log('exist')
-            newLengPack[i.index] = existLengPack[i.index]
+            newLengPack[i.index] = existLengPack[i.index] 
         }
     }
     console.log(newLengPack)
