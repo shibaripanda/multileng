@@ -61,9 +61,11 @@ const lengs: LengDataStart[] = [
 
 const getLenguagesFromAI = async (updateAll: boolean, indata: LengData[], lenguages: LengDataStart[], existLengPack: NewLengPack) => {
     const newLengPack: NewLengPack = {}
+    let time: number = 0
+    const timer = setInterval(() => {console.log('UPDATING LENGUAGES...'), time++}, 1000)
     for(const i of indata){
         if(typeof existLengPack[i.index] === 'undefined' || updateAll){
-            console.log('new')
+            console.log('new', i.index)
             const newRes: LengResult = {info_data: i.info_data, ru: i.rutext}
             for(const l of lenguages.filter(item => item.index !== 'ru')){
                 newRes[l.index] = await openAiRequest(`Переведи на ${l.info} язык: "${i.rutext}", без кавычек и с большой буквы, в ответе только перевод`)
@@ -71,11 +73,13 @@ const getLenguagesFromAI = async (updateAll: boolean, indata: LengData[], lengua
             newLengPack[i.index] = newRes
         }
         else{
-            console.log('exist')
+            console.log('exist', i.index)
             newLengPack[i.index] = existLengPack[i.index] 
         }
     }
+    clearInterval(timer)
     console.log(newLengPack)
+    console.log(time, 'seconds')
     return newLengPack
 }
 
